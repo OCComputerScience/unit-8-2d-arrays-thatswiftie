@@ -3,10 +3,14 @@ package TicTacToe;
 public class TicTacToe
 {
     // Declare 2D array to store an empty board
+    private String[][] board = new String [3][3];
     // and other required variables
 
     // Add constructor to initialize an empty board
-
+    public TicTacToe()
+    {
+        board = {{"-", "-", "-"}, {"-", "-", "-"}, {"-", "-", "-"}};
+    }
     // Add getter for 2D array
 
     /* Pick a location(row, col)
