@@ -11,7 +11,7 @@ public class Main
         printBoard(board.getBoard());
 
         int maxTurns = 9;
-        while(!board.checkWin() || !(board.getTurn() <= maxTurns))
+        while(!(board.getTurn() > maxTurns))
         {
             int row = 0;
             int col = 0;
@@ -25,6 +25,10 @@ public class Main
             }
             board.takeTurn(row, col);
             printBoard(board.getBoard());
+            if(board.checkWin())
+            {
+                break;
+            }
         }
         System.out.println("Was winner: " + board.checkWin());
 
