@@ -5,8 +5,8 @@ import java.util.Scanner;
 public class TicTacToe
 {
     // Declare 2D array to store an empty board
-    private static String[][] board = new String[3][3];
-    private static int counter = 0;
+    private String[][] board = new String[3][3];
+    private int counter = 1;
     // and other required variables
 
     // Add constructor to initialize an empty board
@@ -21,7 +21,7 @@ public class TicTacToe
         }
     }
     // Add getter for 2D array
-    public static String[][] getBoard()
+    public String[][] getBoard()
     {
         return board;
     }
@@ -30,9 +30,9 @@ public class TicTacToe
      A valid location is whether the array bounds, and the location does not already
      contain an X or O
      */
-    public static boolean pickALocation(int row, int col)
+    public boolean pickALocation(int row, int col)
     {
-        if((row > 0 && row < 4) && (col > 0 && col < 4) && board[row][col].equals("-"))
+        if((row > 0 && row < 4) && (col > 0 && col < 4) && board[row - 1][col - 1].equals("-"))
         {
             return true;
         }
@@ -43,46 +43,90 @@ public class TicTacToe
        Add the appropriate symbol(X or O) to the location selected
        Update the current players turn
      */
-    public static int getTurn()
+    public int getTurn()
     {
         return counter;
     }
 
-    public static void takeTurn(int row, int col)
+    public void takeTurn(int row, int col)
     {
-        Scanner input = new Scanner(System.in);
-        counter++;
-        while(!pickALocation(row, col))
-        {
-            System.out.println("Turn " + counter);
-            System.out.println("Pick a row 1-3");
-            row = input.nextInt() - 1;
-            System.out.println("Pick a col 1-3");
-            col = input.nextInt() - 1;
-        }
+
         if(counter % 2 == 0)
         {
-            board[row][col] = "X";
+            board[row-1][col-1] = "X";
         }
         else
         {
-            board[row][col] = "O";
+            board[row-1][col-1] = "O";
         }
+
+        counter++;
     }
 
     /* Check columns
        This should return a boolean for if any column contains three consecutive X's or O's
      */
+    public boolean checkCol()
+    {
+        int col = 0;
+        int row = 1;
+        String current = board[row][col];
+        String previous = board[row-1][col];
+        String next = board[row+1][col];
+        if(current.equals(previous) && current.equals(next) && !current.equals("-"))
+        {
+            return true;
+        }
+        return false;
+    }
 
     /* Check rows
        This should return a boolean for if any rows contains three consecutive X's or O's
      */
+    public boolean checkRow()
+    {
+        int col = 1;
+        int row = 0;
+        String current = board[row][col];
+        String previous = board[row][col - 1];
+        String next = board[row][col + 1];
+        if(current.equals(previous) && current.equals(next) && !current.equals("-"))
+        {
+            return true;
+        }
+        return false;
+    }
 
      /* Check rows
        This should return a boolean for if any diagonal contains three consecutive X's or O's
      */
+    public boolean checkDiag()
+    {
+        String topLeft = board[0][0];
+        String middle = board[1][1];
+        String bottomRight = board[2][2];
+        String bottomLeft = board[2][0];
+        String topRight = board[0][2];
+        if(middle.equals(bottomRight) && middle.equals(topLeft) && !middle.equals("-"))
+        {
+            return true;
+        }
+        else if(middle.equals(bottomLeft) && middle.equals(topRight) && !middle.equals("-"))
+        {
+            return true;
+        }
+        return false;
+    }
 
      /* Check wins
        This should return a boolean if the other 3 methods return true
-     */
+        */
+    public boolean checkWin()
+    {
+        if(checkRow() || checkCol() || checkDiag())
+        {
+            return true;
+        }
+        return false;
+    }
 }
