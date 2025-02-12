@@ -10,7 +10,12 @@ public class Main
         TicTacToe board = new TicTacToe();
         printBoard(board.getBoard());
 
-        int maxTurns = 9;
+        int maxTurns = 9; //MAKE ME A CONSTANT
+
+        /* true checks are easier to read than false checks
+           This could be written:
+           while (board.getTurn() <= 9)
+         */
         while(!(board.getTurn() > maxTurns))
         {
             int row = 0;
@@ -32,6 +37,8 @@ public class Main
                 break;
             }
         }
+
+        // This line is only saying true or false is the winner
         System.out.println("Was winner: " + board.checkWin());
 
     }

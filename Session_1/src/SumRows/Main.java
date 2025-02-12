@@ -6,10 +6,14 @@ public class Main
     {
         // Declare 2D array
         int[][] arr = {{4, 4, 5, 6, 3, 1}, {14, 2, 5, 4, 8, 2}, {45, 12, 13, 5, 2, 1}};
+
+        // USE WHITE SPACE
         // Display sum of all rows
         System.out.println(sumRow(arr, 0));
         System.out.println(sumRow(arr, 1));
         System.out.println(sumRow(arr, 2));
+
+        // USE WHITE SPACE
         // Display sum of all columns
         System.out.println();
         System.out.println(sumCol(arr, 0));
@@ -17,9 +21,13 @@ public class Main
         System.out.println(sumCol(arr, 2));
         System.out.println(sumCol(arr, 3));
         System.out.println(sumCol(arr, 4));
+
+        // USE WHITE SPACE
         // Display sum of all elements
         System.out.println();
         System.out.println(sumArray(arr));
+
+        // USE WHITE SPACE
         // Print entire array
         System.out.println();
         for(int[] row: arr)

@@ -20,11 +20,13 @@ public class TicTacToe
             }
         }
     }
+
     // Add getter for 2D array
     public String[][] getBoard()
     {
         return board;
     }
+
     /* Pick a location(row, col)
      This should return a boolean that indicates if the location is valid
      A valid location is whether the array bounds, and the location does not already
@@ -32,6 +34,7 @@ public class TicTacToe
      */
     public boolean pickALocation(int row, int col)
     {
+        // Use constants ROWS = 4, COLS = 4 or just SIZE = 4
         if((row > 0 && row < 4) && (col > 0 && col < 4) && board[row - 1][col - 1].equals("-"))
         {
             return true;
@@ -51,6 +54,15 @@ public class TicTacToe
     public void takeTurn(int row, int col)
     {
 
+        /* You can save the mathematical operation if you
+           save a "player" variable.
+           boolean playerOneTurn = false;
+           void togglePlayerTurn()
+           {
+               playerOneTurn = !playerOneTurn;
+           }
+         */
+
         if(counter % 2 == 0)
         {
             board[row-1][col-1] = "X";
@@ -66,6 +78,9 @@ public class TicTacToe
     /* Check columns
        This should return a boolean for if any column contains three consecutive X's or O's
      */
+    /* This is only checking for a win in the first column
+       If you work this into a loop, it could work
+     */
     public boolean checkCol()
     {
         int col = 0;
@@ -73,6 +88,7 @@ public class TicTacToe
         String current = board[row][col];
         String previous = board[row-1][col];
         String next = board[row+1][col];
+
         if(current.equals(previous) && current.equals(next) && !current.equals("-"))
         {
             return true;
@@ -82,6 +98,11 @@ public class TicTacToe
 
     /* Check rows
        This should return a boolean for if any rows contains three consecutive X's or O's
+     */
+
+    /*
+      This only works if the win is on the first row
+      If you work this into a loop, it could work
      */
     public boolean checkRow()
     {
@@ -99,6 +120,10 @@ public class TicTacToe
 
      /* Check rows
        This should return a boolean for if any diagonal contains three consecutive X's or O's
+     */
+
+    /*
+        This is hard coding values. How will this work if you tried to make Connect Four?
      */
     public boolean checkDiag()
     {

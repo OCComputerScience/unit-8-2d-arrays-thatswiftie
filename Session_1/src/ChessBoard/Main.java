@@ -8,10 +8,12 @@ public class Main
     {
         Scanner input = new Scanner(System.in);
         Chessboard board = new Chessboard();
+
         board.fillBoard();
         boolean validPlace = false;
         String player = "";
         board.printChessboard();
+
         while(!validPlace)
         {
             System.out.println("Enter the row of player");
