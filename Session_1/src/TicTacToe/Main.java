@@ -23,8 +23,10 @@ public class Main
                 System.out.println("Pick a col 1-3");
                 col = input.nextInt();
             }
+
             board.takeTurn(row, col);
             printBoard(board.getBoard());
+
             if(board.checkWin())
             {
                 break;
